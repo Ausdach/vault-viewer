@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs and local tooling
+*.log
+node_modules/
+.env
+.env.*
+
+# Local test vaults (never commit personal notes)
+/test-vault/
+/my-vault/

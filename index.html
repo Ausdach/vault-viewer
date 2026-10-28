@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vault Viewer</title>
+<link rel="stylesheet" href="app.css?v=6">
+<link rel="stylesheet" href="theme.css?v=6">
+</head>
+<body class="theme-dark">
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('vv-theme'); } catch (e) {}
+  if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  document.body.className = 'theme-' + t;
+})();
+</script>
+
+<div id="app">
+  <div class="ribbon">
+    <button class="clickable-icon" id="btn-open" title="Open vault folder"></button>
+    <button class="clickable-icon" id="btn-graph" title="Graph view"></button>
+    <div class="ribbon-spacer"></div>
+    <button class="clickable-icon" id="btn-theme" title="Toggle light/dark"></button>
+  </div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="vault-name" id="vault-name">No vault</div>
+      <input type="search" id="search" placeholder="Filter by name or #tag" autocomplete="off">
+    </div>
+    <div class="sidebar-scroll">
+      <div class="nav-section" id="bases-section" hidden>
+        <div class="nav-section-title">Bases</div>
+        <div id="bases-list"></div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Files</div>
+        <div id="tree"></div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <label><input type="checkbox" id="opt-templates"> Templates</label>
+      <label><input type="checkbox" id="opt-attach"> Attachments</label>
+    </div>
+  </aside>
+  <div class="resizer" id="resizer"></div>
+
+  <main class="workspace">
+    <div class="view-header">
+      <button class="clickable-icon" id="btn-sidebar" title="Toggle sidebar"></button>
+      <button class="clickable-icon" id="btn-back" title="Back (Alt+Left)"></button>
+      <button class="clickable-icon" id="btn-fwd" title="Forward (Alt+Right)"></button>
+      <div class="view-header-title-container">
+        <span class="view-header-breadcrumb" id="crumbs"></span><span class="view-header-title" id="title"></span>
+      </div>
+      <div class="view-actions" id="view-actions"></div>
+      <button class="clickable-icon" id="btn-print" title="Print / save as PDF (Ctrl+P)"></button>
+    </div>
+    <div class="view-content" id="content"></div>
+  </main>
+</div>
+
+<input type="file" id="picker" webkitdirectory multiple hidden>
+<div id="loading" hidden><div class="loading-box"><div class="spinner"></div><div id="loading-text">Loading…</div></div></div>
+
+<script src="lib.js?v=6"></script>
+<script src="app.js?v=6"></script>
+</body>
+</html>
